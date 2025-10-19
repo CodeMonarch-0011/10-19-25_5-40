@@ -11,6 +11,8 @@ export function ContactPopup() {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const ref = useRef(null);
 
   const { closeContactPopup } = ContactContextFunction();
@@ -47,6 +49,8 @@ export function ContactPopup() {
       return;
     }
 
+    setLoading(true);
+
     try {
       const response = await openMail(contactInfo);
       // console.log(response);
@@ -54,12 +58,22 @@ export function ContactPopup() {
         label: "Message sent successfully",
         type: "Success",
       });
+
+      setLoading(false);
+
+      setContactInfo({
+        name: "",
+        from: "",
+        message: "",
+      });
     } catch (err) {
       // console.log(err);
       addMessage({
         label: "Error Occurred, Try again",
         type: "error",
       });
+
+      setLoading(false);
     }
 
     //
@@ -107,7 +121,14 @@ export function ContactPopup() {
           onChange={handleChange}
         ></textarea>
 
-        <button>Get in Touch</button>
+        {!loading ? (
+          <button>Get in Touch</button>
+        ) : (
+          <button type="button" disabled={true}>
+            {" "}
+            <div className="loader" />{" "}
+          </button>
+        )}
       </form>
     </div>
   );
