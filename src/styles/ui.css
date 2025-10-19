@@ -198,6 +198,22 @@
     height: 100vh;
   }
 
+  .loader {
+    width: 20px;
+    height: 20px;
+    border-left: 3px solid white;
+    border-right: 3px solid white;
+    background-color: transparent;
+    animation: spin 1.2s linear infinite;
+    border-radius: 50%;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   .navbar-menu-icon {
     display: flex;
     font-size: 1.28rem;
