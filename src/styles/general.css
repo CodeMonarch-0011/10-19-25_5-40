@@ -1,0 +1,116 @@
+.message-queue {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 2;
+}
+
+.msg {
+  width: 80%;
+  background-color: white;
+  border-radius: 4px;
+  min-height: 36px;
+  position: relative;
+  padding: 12px 32px;
+  font-size: 0.88rem;
+  color: rgb(47, 47, 47);
+}
+
+.msg-load {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  height: 4px;
+  border-radius: 4px;
+  bottom: 0;
+  animation: load 1.2s ease-out;
+}
+
+.slider {
+  display: none;
+}
+
+@keyframes load {
+  from {
+    width: 0;
+  }
+}
+
+.msg-load[data-status="success"] {
+  background-color: rgb(50, 185, 47);
+}
+
+.msg-load[data-status="warning"] {
+  background-color: rgb(219, 187, 47);
+}
+
+.msg-load[data-status="error"] {
+  background-color: rgb(219, 47, 47);
+}
+
+@media screen and (max-width: 600px) {
+  .msg {
+    width: 100%;
+  }
+
+  .slider {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg);
+    color: white;
+    z-index: 1;
+    padding: 40px 28px;
+    padding-top: 72px;
+  }
+
+  .slider-exit {
+    position: absolute;
+    right: 28px;
+    top: 28px;
+    font-size: 1.42rem;
+  }
+
+  .slider-menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+  }
+
+  .slider-item {
+    width: 100%;
+    height: 56px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.586);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 28px;
+    align-items: center;
+  }
+
+  .slider-item:last-child {
+    border-bottom: none;
+  }
+
+  .slider button {
+    font-size: clamp(0.88rem, 1vw, 1.125rem);
+    cursor: pointer;
+    width: 100%;
+    padding: 16px 60px;
+    border: none;
+    color: white;
+    font-family: OpenSans;
+    background-color: var(--primary);
+    border-radius: 4px;
+    justify-self: bottom;
+    margin-bottom: 40px;
+  }
+}
